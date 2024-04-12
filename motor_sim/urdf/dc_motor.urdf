@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<robot name="DC_Motor">
+
+    <link name = "World" />
+
+    <link name = "Chassis" />
+
+    <link name = "Wheel" />
+
+    <joint name = "joint1" type = "fixed">
+
+        <parent link="World" />
+        <child link = "Chassis" />
+
+        <orgin xyz="1 2 1" rpy="0 0 0" />
+    
+    </joint>
+
+    <joint name = "joint2" type = "continous">
+
+        <parent link="Chassis" />
+        <child link = "Wheel" />
+
+        <orgin xyz="1 1 0" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+
+    </joint>
+
+</robot>
