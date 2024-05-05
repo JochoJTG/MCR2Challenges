@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!--Load mesh model -->
+    <arg name="urdf_model" value="$(find dlm_sim)/urdf/manipulator.urdf"/>
+    <param name="robot_description" command="cat $(arg urdf_model)" />
+
+
+    <!--Robot State Publisher -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="manipulator_state_pub" >
+    </node>
+
+
+    <node pkg="dlm_sim" type="ref_data_node" name="ref_data_node">
+    </node>
+    <node pkg="dlm_sim" type="dlm_dyn_sim_node" name="dlm_dyn_sim_node" output="screen">
+    </node>
+    <node pkg="dlm_sim" type="ctc_control_node" name="ctc_control_node">
+    </node>
+
+        
+    <!--Robot State Publisher --> <!--Uncomment-->    
+    <!--<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    </node> -->
+
+    <arg name="rvizconfig" default="$(find dlm_sim)/rviz/manipulator.rviz" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> 
+
+</launch>
